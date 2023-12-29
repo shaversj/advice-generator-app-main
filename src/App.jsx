@@ -1,17 +1,19 @@
 import desktopDivider from "/src/assets/images/pattern-divider-desktop.svg";
 import mobileDivider from "/src/assets/images/pattern-divider-mobile.svg";
 import dice from "/src/assets/images/icon-dice.svg";
-import UseGetAdvice from "./useGetAdvice.jsx";
 import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 import { IconContext } from "react-icons";
 import { useCallback, useEffect, useReducer, useState } from "react";
-import useGetAdvice from "./useGetAdvice.jsx";
 import axios from "axios";
 
 function App() {
-  // const { data, loading, setData } = useGetAdvice();
-  const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState({
+    slip: {
+      id: 117,
+      advice: "It is easy to sit up and take notice, what's difficult is getting up and taking action.",
+    },
+  });
+  const [loading, setLoading] = useState(false);
 
   const getAdvice = useCallback(async () => {
     try {
@@ -24,9 +26,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getAdvice()
-      // make sure to catch any error
-      .catch(console.error);
+    getAdvice().catch(console.error);
   }, [getAdvice]);
 
   return (
@@ -53,7 +53,7 @@ function App() {
               </picture>
             </div>
             <div className={"-mt-8 flex justify-center"}>
-              <button onClick={getAdvice} className={"flex h-16 w-16 items-center justify-center rounded-full bg-neon-green"}>
+              <button onClick={getAdvice} className={"flex h-16 w-16 items-center justify-center rounded-full bg-neon-green hover:shadow-[0_3px_30px_rgba(84,_255,_170,_0.7)]"}>
                 <img src={dice} alt={""} />
               </button>
             </div>
