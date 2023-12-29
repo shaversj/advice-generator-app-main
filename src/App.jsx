@@ -35,7 +35,7 @@ function App() {
         <div className={"min-h-[667px] w-full max-w-screen-sm bg-dark-blue font-Manrope lg:grid lg:min-h-[810px] lg:max-w-screen-lg lg:place-items-center"}>
           <main className={"px-4 pt-[118px] lg:px-[450px] lg:pt-0"}>
             <div className={"rounded-lg bg-dark-grayish-blue px-5 lg:rounded-2xl lg:px-[40px]"}>
-              <h2 className={"pt-[40px] text-center text-[11.5px] font-medium uppercase tracking-[.215rem] text-neon-green lg:pt-[49px] lg:text-[12.5px] lg:font-bold lg:tracking-[.27rem]"}>Advice #{!loading && data.slip.id}</h2>
+              <h1 className={"pt-[40px] text-center text-[11.5px] font-medium uppercase tracking-[.215rem] text-neon-green lg:pt-[49px] lg:text-[12.5px] lg:font-bold lg:tracking-[.27rem]"}>Advice #{!loading && data.slip.id}</h1>
               <p className={"pt-[26px] text-center text-2xl font-semibold tracking-[0.006em] text-light-cyan lg:pt-[26px] lg:text-[27.8px] lg:font-semibold lg:leading-[2.35rem] lg:tracking-[0.01em]"}>
                 <IconContext.Provider value={{ style: { display: "inline", marginTop: "-18px" } }}>
                   <RiDoubleQuotesL size={"1rem"} />
@@ -53,7 +53,7 @@ function App() {
               </picture>
             </div>
             <div className={"-mt-8 flex justify-center"}>
-              <button onClick={getAdvice} className={"flex h-16 w-16 items-center justify-center rounded-full bg-neon-green hover:shadow-[0_3px_30px_rgba(84,_255,_170,_0.7)]"}>
+              <button aria-label={"Button to get new advice"} onClick={getAdvice} className={"flex h-16 w-16 items-center justify-center rounded-full bg-neon-green hover:shadow-[0_3px_30px_rgba(84,_255,_170,_0.7)]"}>
                 <img src={dice} alt={""} />
               </button>
             </div>
