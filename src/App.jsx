@@ -1,10 +1,10 @@
+import { useState } from "react";
+import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
+import { IconContext } from "react-icons";
+import axios from "axios";
 import desktopDivider from "/src/assets/images/pattern-divider-desktop.svg";
 import mobileDivider from "/src/assets/images/pattern-divider-mobile.svg";
 import dice from "/src/assets/images/icon-dice.svg";
-import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
-import { IconContext } from "react-icons";
-import { useCallback, useEffect, useReducer, useState } from "react";
-import axios from "axios";
 
 function App() {
   const [data, setData] = useState({
@@ -13,21 +13,15 @@ function App() {
       advice: "It is easy to sit up and take notice, what's difficult is getting up and taking action.",
     },
   });
-  const [loading, setLoading] = useState(false);
 
-  const getAdvice = useCallback(async () => {
+  const getAdvice = async () => {
     try {
       const { data: response } = await axios.get("https://api.adviceslip.com/advice");
       setData(response);
     } catch (error) {
       console.error(error);
     }
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    getAdvice().catch(console.error);
-  }, [getAdvice]);
+  };
 
   return (
     <>
@@ -35,13 +29,13 @@ function App() {
         <div className={"min-h-[667px] w-full max-w-screen-sm bg-dark-blue font-Manrope lg:grid lg:min-h-[810px] lg:max-w-screen-lg lg:place-items-center"}>
           <main className={"px-4 pt-[118px] lg:px-[450px] lg:pt-0"}>
             <div className={"rounded-lg bg-dark-grayish-blue px-5 lg:rounded-2xl lg:px-[40px]"}>
-              <h1 className={"pt-[40px] text-center text-[11.5px] font-medium uppercase tracking-[.215rem] text-neon-green lg:pt-[49px] lg:text-[12.5px] lg:font-bold lg:tracking-[.27rem]"}>Advice #{!loading && data.slip.id}</h1>
+              <h1 className={"pt-[40px] text-center text-[11.5px] font-medium uppercase tracking-[.215rem] text-neon-green lg:pt-[49px] lg:text-[12.5px] lg:font-bold lg:tracking-[.27rem]"}>Advice #{data.slip.id}</h1>
               <p className={"pt-[26px] text-center text-2xl font-semibold tracking-[0.006em] text-light-cyan lg:pt-[26px] lg:text-[27.8px] lg:font-semibold lg:leading-[2.35rem] lg:tracking-[0.01em]"}>
                 <IconContext.Provider value={{ style: { display: "inline", marginTop: "-18px" } }}>
                   <RiDoubleQuotesL size={"1rem"} />
                 </IconContext.Provider>
 
-                {!loading && data.slip.advice}
+                {data.slip.advice}
 
                 <IconContext.Provider value={{ style: { display: "inline", marginTop: "-18px" } }}>
                   <RiDoubleQuotesR size={"1rem"} />
